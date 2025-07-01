@@ -1,0 +1,23 @@
+.react-slider__ul{
+    height: 9vh;
+}
+.faq-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .faq-list {
+    margin-bottom: 1rem;
+  }
+  
+  .faq-question {
+    cursor: pointer;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .faq-container {
+      padding: 1rem;
+    }
+  }

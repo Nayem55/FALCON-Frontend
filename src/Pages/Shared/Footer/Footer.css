@@ -1,0 +1,9 @@
+.footer-container{
+    letter-spacing: 0.5px;
+    line-height: 21px;
+}
+.footer-container a{
+    color:rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+
+}
