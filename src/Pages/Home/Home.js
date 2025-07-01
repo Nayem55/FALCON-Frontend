@@ -33,7 +33,6 @@ const Home = () => {
       .finally(() => setLoadingProducts(false));
   };
 
-  console.log(products)
 
   /* -------------------------------------------------- */
   /* Category helpers                                   */
