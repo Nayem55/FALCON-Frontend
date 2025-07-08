@@ -15,9 +15,6 @@ import { toast } from "react-hot-toast";
 import { addToDb } from "../../utilities/CartDb";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
-/**
- * ProductDetails – full 3‑column layout with delivery card matching screenshot
- */
 const ProductDetails = () => {
   const { slug } = useParams();
   const navigate = useNavigate();
@@ -36,6 +33,8 @@ const ProductDetails = () => {
   const [expandedDesc, setExpandedDesc] = useState(false);
   const [expandedSpec, setExpandedSpec] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [selectedSize, setSelectedSize] = useState('XS');
+  const [selectedColor, setSelectedColor] = useState('Navy Blue');
 
   /* -------------------- fetch product -------------------- */
   useEffect(() => {
@@ -95,34 +94,28 @@ const ProductDetails = () => {
   const toggleQty = (d) => setQty((q) => Math.min(Math.max(1, q + d), stock));
 
   const addToCart = () => {
-    // unique key distinguishes variants
     const key = `${product.id}${selectedVar ? "-" + selectedVar.id : ""}`;
-
-    // pull latest cart from storage (so multi‑tab stays in sync)
     const stored = JSON.parse(localStorage.getItem("shopping_cart") || "[]");
-
-    // does this item already exist?
     const exists = stored.find((it) => it.key === key);
 
     if (exists) {
-      exists.qty += qty; // increment qty
+      exists.qty += qty;
     } else {
       stored.push({
         key,
-        product: product,              // ← full product object
-        variation: selectedVar ?? null, // (includes variation attrs)
+        product: product,
+        variation: selectedVar ?? null,
         qty,
-        price,                          // capture price at add‑time
+        price,
         img: selectedVar?.image || product.thumbnail,
+        color: selectedColor,
+        size: selectedSize
       });
     }
 
-    // persist + sync context
     localStorage.setItem("shopping_cart", JSON.stringify(stored));
     setCart(stored);
-
     toast.success("Added to cart");
-    // navigate("/cart"); // re‑enable if you want auto‑redirect
   };
 
   const setVariation = (id) => {
@@ -134,32 +127,36 @@ const ProductDetails = () => {
     }
   };
 
+  console.log(product)
+
   /* -------------------- sub‑components -------------------- */
   const DeliveryCard = () => (
-    <aside className="border rounded p-4 text-xs space-y-4 md:col-span-1 h-fit">
+   <div className="flex flex-col gap-4">
+        <div className="border rounded p-4 text-xs space-y-4 md:col-span-1 h-fit lg:w-[313px]">
       {/* Delivery */}
       <div className="space-y-2">
         <h3 className="font-semibold text-sm flex items-center space-x-2">
           <Truck size={14} /> <span>Delivery Options</span>
         </h3>
-        <div className="flex items-center justify-between text-sm">
+        <div className="flex flex-col justify-between text-sm">
           <div className="flex items-center space-x-1">
             <CheckCircle size={14} className="text-green-600" />
             <span>Regular</span>
           </div>
-          <span className="text-gray-500">2‑3 days</span>
+          <span className="text-gray-500 ms-4">Delivery within &lt;3 days</span>
         </div>
-        <div className="flex items-center justify-between text-sm opacity-60">
+        <div className="flex flex-col justify-between text-sm opacity-60">
           <div className="flex items-center space-x-1">
             <XCircle size={14} className="text-red-500" />
             <span>Express</span>
           </div>
-          <span>Not Available</span>
+          <span className="ms-4">Maximum Delivery within 30 hours</span>
         </div>
       </div>
-
+    </div>
+    <div className="border rounded p-4 text-xs space-y-4 md:col-span-1 h-fit lg:w-[313px]">
       {/* Seller */}
-      <div className="border rounded p-3 space-y-2">
+      <div className="space-y-2">
         <div className="flex items-center space-x-2 text-sm font-medium">
           <img
             src={product.brand?.media?.[0]?.full_url || product.brand?.image}
@@ -168,35 +165,36 @@ const ProductDetails = () => {
           />
           <span>{product.merchant.shop_name}</span>
         </div>
-        <div className="flex space-x-2 text-xs">
-          <button className="bg-[#00B26A] text-white px-3 py-1 rounded">
+        <div className="flex justify-between space-x-2 text-xs">
+          <button className="bg-[#E6F8F4] text-[#00A788] px-3 py-2 rounded w-[135px] h-[28px]">
             Chat Now
           </button>
-          <button className="border px-3 py-1 rounded">View Shop</button>
+          <button className="border px-3 py-2 rounded w-[135px] h-[28px]">View Shop</button>
         </div>
-        <div className="grid grid-cols-3 gap-2 text-[10px] mt-2">
-          <div className="text-center">
-            <p className="font-semibold">100%</p>
+        <div className="grid grid-cols-3 gap-2 mt-4">
+          <div className="text-center mt-2">
             <p>Ship on time</p>
+            <p className="font-semibold text-xl">100%</p>
           </div>
-          <div className="text-center">
-            <p className="font-semibold">90%</p>
+          <div className="text-center mt-2">
             <p>Chat Response</p>
+            <p className="font-semibold text-xl">90%</p>
           </div>
-          <div className="text-center">
-            <p className="font-semibold">99.8%</p>
+          <div className="text-center mt-2">
             <p>Shop Rating</p>
+            <p className="font-semibold text-xl">99.8%</p>
           </div>
         </div>
       </div>
-    </aside>
+    </div>
+   </div>
   );
 
   /* -------------------- render -------------------- */
   return (
-    <main className="px-4 md:px-16 py-6">
+    <main className="p-4 lg:p-0 lg:bg-[#F1F5F9]">
       {/* breadcrumb */}
-      <nav className="text-xs text-gray-500 mb-4 space-x-1">
+      <nav className="text-xs text-gray-500 mb-4 space-x-1 bg-[#F1F5F9] p-4 lg:w-[1280px] mx-auto">
         <Link to="/" className="hover:underline">
           Home
         </Link>
@@ -204,17 +202,14 @@ const ProductDetails = () => {
         <Link to={`/${product.slug}`} className="hover:underline">
           {catName}
         </Link>
-        <span>/</span>
-        <span className="text-black font-semibold line-clamp-1 max-w-xs inline-block align-bottom">
-          {product.name}
-        </span>
+
       </nav>
 
       {/* 3‑column */}
-      <section className="grid md:grid-cols-[1fr_1.6fr_0.8fr] gap-8">
+      <section className="bg-white grid md:grid-cols-[1fr_1.6fr_0.8fr] gap-6 md:px-16 py-6 lg:w-[1280px] lg:h-[553px] mx-auto">
         {/* Gallery */}
         <div>
-          <div className="border rounded flex items-center justify-center h-[360px]">
+          <div className="border rounded flex items-center justify-center lg:w-[380px]">
             <img
               src={mainImg}
               alt="main"
@@ -248,9 +243,19 @@ const ProductDetails = () => {
         {/* Details */}
         <div className="space-y-4">
           <h1 className="text-xl font-semibold leading-6">{product.name}</h1>
-          <div className="flex items-center space-x-3 text-sm">
-            {ratingStars}
-            <span>({product.rating_count})</span>
+       {/* Rating - Updated to match Figma exactly */}
+          <div className="flex items-center space-x-2 text-sm">
+            <span className="text-black">4.7</span>
+            <div className="flex">
+              {[...Array(5)].map((_, i) => (
+                <Star 
+                  key={i} 
+                  size={16} 
+                  className={`${i < 4 ? 'fill-[#FFD700] text-[#FFD700]' : 'text-gray-300'}`} 
+                />
+              ))}
+            </div>
+            <span className="text-gray-600">2,254</span>
           </div>
           <div className="flex items-center space-x-4">
             <div className="text-2xl font-bold text-black">৳{price}</div>
@@ -261,48 +266,52 @@ const ProductDetails = () => {
             )}
           </div>
 
-          {/* variations loop */}
-          {product.variations[0] && (
-            <div className="space-y-3 mt-4 text-sm">
-              {product.variations[0].variation_attributes.map(
-                ({ attribute }) => (
-                  <div
-                    key={attribute.id}
-                    className="flex items-start space-x-2"
-                  >
-                    <span className="font-medium w-20 capitalize">
-                      {attribute.name}:
-                    </span>
-                    <div className="flex flex-wrap gap-2">
-                      {product.variations.map((v) => {
-                        const opt = v.variation_attributes.find(
-                          (a) => a.attribute_id === attribute.id
-                        );
-                        return (
-                          <button
-                            key={`${v.id}-${attribute.id}`}
-                            onClick={() => setVariation(v.id)}
-                            className={`px-3 py-1 border rounded text-xs ${
-                              v.id === selectedVar?.id
-                                ? "border-black"
-                                : "hover:border-black"
-                            }`}
-                          >
-                            {opt?.attribute_option.attribute_value}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )
-              )}
-            </div>
-          )}
+        {/* Promotion - Exact match to Figma */}
+          <div className="flex items-center">
+              <span className="font-semibold mr-2">Promotion</span>
+              <span className="bg-gradient-to-r from-[#FF8810] to-[#DA4A09] text-white px-3 py-2 text-sm">Min. spend ৳550</span>
+          </div>
 
-          {/* quantity */}
-          <div className="flex items-center mt-4 space-x-3">
-            <span className="font-medium text-sm">Quantity:</span>
-            <div className="flex items-center border rounded">
+          {/* Available Color - Updated with color options */}
+          <div className="mt-4">
+            <p className="text-sm font-medium mb-2">Available Color: {selectedColor}</p>
+            <div className="flex gap-2">
+              {['Navy Blue', 'Black', 'White', 'Red'].map(color => (
+                <button
+                  key={color}
+                  onClick={() => setSelectedColor(color)}
+                  className={`px-3 py-1 border rounded text-xs ${
+                    color === selectedColor ? 'border-black bg-gray-100' : 'border-gray-300'
+                  }`}
+                >
+                  {color}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Select Size */}
+          <div className="mt-2">
+            <p className="text-sm font-medium">Select Size: {selectedSize}</p>
+            <div className="flex gap-2 mt-1">
+              {['XS', 'S', 'M', 'L', 'XL'].map(size => (
+                <button
+                  key={size}
+                  onClick={() => setSelectedSize(size)}
+                  className={`px-3 py-1 border rounded text-xs ${
+                    size === selectedSize ? 'border-black bg-gray-100' : 'border-gray-300'
+                  }`}
+                >
+                  {size}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Quantity */}
+          <div className="mt-4 lg:w-[195px] h-[72px]">
+            <p className="text-sm font-medium">Quantity</p>
+            <div className="flex items-center border rounded w-24 mt-1">
               <button
                 onClick={() => toggleQty(-1)}
                 className="px-3 py-1 hover:bg-gray-100"
@@ -321,40 +330,25 @@ const ProductDetails = () => {
                 +
               </button>
             </div>
-            <span className="text-xs text-gray-500">(Available: {stock})</span>
           </div>
 
           <button
             onClick={addToCart}
-            className="bg-teal-700 text-white w-full py-2 rounded hover:bg-[#0C1C2C] ease-in-out duration-200 mt-4"
+            className="bg-[#00A788] text-white w-full py-2 rounded hover:bg-[#0C1C2C] ease-in-out duration-200 mt-4 lg:w-[412px] lg:h-[48px]"
           >
             Add to Cart
           </button>
-
-          {/* simple assurance box */}
-          <div className="border rounded p-4 text-xs space-y-3">
-            <div className="flex items-center space-x-2 text-sm font-medium">
-              <ShieldCheck size={14} />
-              <span>Quality Check</span>
-            </div>
-            <p>
-              Authenticity verified by{" "}
-              <span className="font-semibold">
-                {product.merchant.shop_name}
-              </span>
-            </p>
-          </div>
         </div>
 
         {/* Delivery / Seller */}
         <DeliveryCard />
       </section>
 
-      {/* desc & spec */}
-      <section className="grid md:grid-cols-2 gap-8 mt-10">
+      {/* desc & spec*/}
+      <section className="flex flex-col gap-8 py-10 lg:w-[1280px] mx-auto">
         {/* description */}
-        <div className="border rounded overflow-hidden relative">
-          <header className="bg-gray-100 px-4 py-2 font-semibold text-sm">
+        <div className="bg-white border rounded overflow-hidden relative h-[230px] lg:h-[339px] lg:w-[955px]">
+          <header className="bg-[#E6F8F4] px-4 py-2 font-semibold text-sm">
             Description
           </header>
           <div className="p-4 text-sm relative">
@@ -371,18 +365,18 @@ const ProductDetails = () => {
               )}
             </div>
           </div>
-          <button
-            onClick={() => setExpandedDesc(!expandedDesc)}
-            className="text-black flex items-center space-x-1 text-xs mt-2 mx-auto"
-          >
-            {expandedDesc ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-            <span>{expandedDesc ? "See Less" : "See More"}</span>
-          </button>
+        <button
+        onClick={() => setExpandedDesc(!expandedDesc)}
+        className="text-black absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center space-x-1 text-xs"
+>     
+        {expandedDesc ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+        <span>{expandedDesc ? "See Less" : "See More"}</span>
+        </button>
         </div>
 
         {/* specification */}
-        <div className="border rounded overflow-hidden relative">
-          <header className="bg-gray-100 px-4 py-2 font-semibold text-sm">
+        <div className="bg-white border rounded overflow-hidden relative h-[230px] lg:h-[339px] lg:w-[955px]">
+          <header className="bg-[#E6F8F4] px-4 py-2 font-semibold text-sm">
             Specification
           </header>
           <div className="p-4 text-sm relative">
@@ -402,7 +396,7 @@ const ProductDetails = () => {
           </div>
           <button
             onClick={() => setExpandedSpec(!expandedSpec)}
-            className="text-black flex items-center space-x-1 text-xs mt-2 mx-auto"
+            className="text-black absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center space-x-1 text-xs"
           >
             {expandedSpec ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
             <span>{expandedSpec ? "See Less" : "See More"}</span>

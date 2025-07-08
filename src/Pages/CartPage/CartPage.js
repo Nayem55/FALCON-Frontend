@@ -1,4 +1,3 @@
-/*  CartPage.jsx  —  redesigned cart  */
 import { useContext, useEffect, useState, useMemo } from "react";
 import { ThemeContext } from "../../Contexts/ThemeContext";
 import {
@@ -81,35 +80,34 @@ const CartPage = () => {
       </div>
     );
   }
-
   return (
-    <section className="px-4 md:px-16 py-6">
+    <section className="px-4 py-6 bg-[#F1F5F9]">
       {/* breadcrumb mimic */}
-      <nav className="text-xs text-gray-500 mb-4">
+      <nav className="text-xs text-gray-500 mb-4 lg:w-[1269px] mx-auto">
         Home <span className="mx-1">›</span> <span className="font-medium">My Cart</span>
       </nav>
 
-      <div className="grid lg:grid-cols-[1fr_300px] gap-6">
+      <div className="flex flex-col sm:flex-row gap-6 lg:w-[1269px] mx-auto">
         {/* ───────────────—  LEFT: cart list  —─────────────── */}
-        <div className="border rounded">
+        <div className="border rounded bg-white lg:w-[823px]">
           {/* header line */}
           <div className="flex items-center justify-between px-4 py-3 border-b">
             <h2 className="text-xl font-semibold">
-              My Cart <span className="text-teal-600">({totals.items})</span>
+              My Cart <span className="">({totals.items})</span>
             </h2>
 
             <div className="flex items-center space-x-6 text-sm">
               <label className="flex items-center space-x-1 cursor-pointer">
                 <input
                   type="checkbox"
-                  className="accent-teal-600"
+                  className="accent-[#00B795]"
                   checked={cart.every((r) => r.selected)}
                   onChange={(e) => toggleAll(e.target.checked)}
                 />
-                <span>Select All</span>
+                <span className="mt-1 text-[#94A3B8]">Select All</span>
               </label>
               <button
-                className="text-red-600 hover:underline disabled:opacity-40"
+                className="text-red-600 hover:underline disabled:opacity-40 mt-1"
                 disabled={!anySelected}
                 onClick={() => cart
                   .filter((r) => r.selected)
@@ -124,25 +122,25 @@ const CartPage = () => {
           {Object.entries(grouped).map(([merchant, rows]) => (
             <div key={merchant} className="border-b last:border-0">
               {/* merchant bar */}
-              <div className="bg-gray-50 flex items-center px-4 py-2 text-sm font-medium">
+              <div className="bg-[#F1F5F9] flex items-center px-4 py-2 text-sm font-medium">
                 <input
                   type="checkbox"
-                  className="accent-teal-600 mr-2"
+                  className="accent-[#00B795] mr-2"
                   checked={rows.every((r) => r.selected)}
                   onChange={(e) => toggleMerchant(merchant, e.target.checked)}
                 />
-                {merchant}
+                BD FASHION HOUSE
               </div>
 
               {rows.map((it) => (
                 <div
                   key={it.key}
-                  className="flex items-start sm:items-center px-4 py-3 border-b last:border-0"
+                  className="flex items-start px-4 py-3 border-b last:border-0"
                 >
                   {/* row-checkbox */}
                   <input
                     type="checkbox"
-                    className="accent-teal-600 mt-2 sm:mt-0 mr-3"
+                    className="accent-[#00B795] mt-2 sm:mt-0 mr-3"
                     checked={!!it.selected}
                     onChange={(e) => toggleRow(it.key, e.target.checked)}
                   />
@@ -151,51 +149,47 @@ const CartPage = () => {
                   <img
                     src={it.img}
                     alt={it.name}
-                    className="w-16 h-16 object-cover rounded mr-3 shrink-0"
+                    className="w-[100px] h-[100px] object-cover rounded mr-3 shrink-0"
                   />
                   <div className="flex-1">
-                    <p className="font-medium text-sm">{it.name}</p>
-                    {it.variantLabel && (
-                      <p className="text-xs text-gray-500">
-                        {it.variantLabel}
+                    <p className="font-medium text-sm">{it.product.name}</p>
+                      <p className="text-xs text-gray-500 flex gap-2">
+                        <span>Color : {it.color} ;</span>
+                        <span>Size : {it.size}</span>
                       </p>
-                    )}
-                  </div>
-
-                  {/* price / qty / subtotal */}
-                  <div className="hidden md:block w-20 text-right">
-                    ৳{it.price.toLocaleString()}
-                  </div>
-
                   {/* qty box */}
-                  <div className="mx-4">
-                    <div className="flex items-center border rounded">
+                  <div className="flex gap-4 mt-2">
+                    <div className="flex items-center border rounded lg:w-[161px] h-[40px]">
                       <button
                         onClick={() => updateQty(it.key, -1)}
-                        className="p-1 hover:bg-gray-100"
+                        className="hover:bg-gray-100 flex justify-center items-center w-1/3 bg-[#F1F5F9] h-[40px]"
                       >
                         <Minus size={14} />
                       </button>
-                      <span className="px-4">{it.qty}</span>
+                      <span className="px-4 w-1/2 text-center">{it.qty}</span>
                       <button
                         onClick={() => updateQty(it.key, 1)}
-                        className="p-1 hover:bg-gray-100"
+                        className="hover:bg-gray-100 flex justify-center items-center w-1/3 bg-[#F1F5F9] h-[40px]"
                       >
                         <Plus size={14} />
                       </button>
                     </div>
-                  </div>
-
-                  <div className="w-24 text-right font-medium hidden md:block">
-                    ৳{(it.price * it.qty).toLocaleString()}
-                  </div>
-
                   <button
                     onClick={() => remove(it.key)}
-                    className="text-red-500 hover:text-red-700 ml-3"
+                    className="text-[#94A3B8] hover:text-red-500 ml-3"
                   >
                     <Trash2 size={18} />
                   </button>
+                  </div>
+                  </div>
+
+
+
+                  <div className="w-24 text-right font-bold hidden md:block">
+                    ৳{(it.price * it.qty).toLocaleString()}
+                  </div>
+
+
                 </div>
               ))}
             </div>
@@ -203,7 +197,7 @@ const CartPage = () => {
         </div>
 
         {/* ───────────────—  RIGHT: summary card  —─────────────── */}
-        <aside className="border rounded p-6 space-y-4 h-max">
+        <aside className="bg-white border rounded p-6 space-y-4 lg:w-[418px]">
           <h3 className="text-lg font-semibold">Order summary</h3>
 
           <div className="flex justify-between text-sm">
@@ -227,7 +221,7 @@ const CartPage = () => {
               placeholder="Store / Falcon coupon"
               className="border rounded-l px-3 py-2 flex-1 text-sm"
             />
-            <button className="bg-teal-600 text-white px-4 rounded-r text-sm">
+            <button className="bg-[#00B795] text-white px-4 rounded-r text-sm">
               Apply
             </button>
           </div>
@@ -240,9 +234,9 @@ const CartPage = () => {
           <button
             disabled={!agree}
             onClick={() => navigate("/checkout")}
-            className={`w-full py-3 rounded text-white text-sm font-medium ${
+            className={`w-full h-[48px] rounded text-white text-sm font-medium ${
               agree
-                ? "bg-teal-600 hover:bg-teal-700"
+                ? "bg-[#00B795] hover:bg-teal-700"
                 : "bg-gray-300 cursor-not-allowed"
             }`}
           >
@@ -252,7 +246,7 @@ const CartPage = () => {
           <label className="flex items-start space-x-2 text-xs">
             <input
               type="checkbox"
-              className="accent-teal-600 mt-[2px]"
+              className="accent-[#00B795] mt-[2px]"
               checked={agree}
               onChange={(e) => setAgree(e.target.checked)}
             />
