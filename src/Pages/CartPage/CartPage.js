@@ -159,17 +159,17 @@ const CartPage = () => {
                       </p>
                   {/* qty box */}
                   <div className="flex gap-4 mt-2">
-                    <div className="flex items-center border rounded lg:w-[161px] h-[40px]">
+                    <div className="flex items-center border rounded-full lg:w-[141px] h-[38px]">
                       <button
                         onClick={() => updateQty(it.key, -1)}
-                        className="hover:bg-gray-100 flex justify-center items-center w-1/3 bg-[#F1F5F9] h-[40px]"
+                        className="hover:bg-gray-100 flex justify-center items-center w-1/3 bg-[#F1F5F9] h-[34px] rounded-full"
                       >
                         <Minus size={14} />
                       </button>
                       <span className="px-4 w-1/2 text-center">{it.qty}</span>
                       <button
                         onClick={() => updateQty(it.key, 1)}
-                        className="hover:bg-gray-100 flex justify-center items-center w-1/3 bg-[#F1F5F9] h-[40px]"
+                        className="hover:bg-gray-100 flex justify-center items-center w-1/3 bg-[#F1F5F9] h-[34px] rounded-full"
                       >
                         <Plus size={14} />
                       </button>
