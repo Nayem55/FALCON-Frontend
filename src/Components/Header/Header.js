@@ -138,7 +138,7 @@ const Header = ({ popCart, handlePopCart }) => {
             className="flex items-center space-x-1 text-sm font-medium min-w-max"
             onClick={() => setMenuOpen(true)}
           >
-            <FontAwesomeIcon icon={faBars} />
+            <FontAwesomeIcon className="mt-[-5px]" icon={faBars} />
             <span>Categories</span>
           </button>
           {categories.slice(0, 5).map((cat) => (
