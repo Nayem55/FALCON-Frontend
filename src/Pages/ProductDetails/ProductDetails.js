@@ -242,7 +242,7 @@ const ProductDetails = () => {
           </div>
 
           {/* Details */}
-          <div className="flex flex-col gap-[26px] sm:w-[507px]">
+          <div className="flex flex-col gap-[8px] sm:w-[507px]">
             <h1 className="font-medium text-[20px] leading-[28px] tracking-normal font-onest text-[#0F172A]">
               {product.name}
             </h1>
@@ -284,22 +284,48 @@ const ProductDetails = () => {
 
             <div className="flex items-center space-x-4">
               <div className="text-[24px] font-semibold text-[#00A788]">
-                ৳{price}
+                ৳
+                {parseFloat(price).toLocaleString("en-BD", {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
               </div>
               {parseFloat(price) < parseFloat(regularPrice) && (
                 <div className="text-[16px] line-through text-[#94A3B8] font-normal">
-                  ৳{regularPrice}
+                  ৳
+                  {parseFloat(regularPrice).toLocaleString("en-BD", {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  })}
                 </div>
               )}
             </div>
 
             {/* Promotion - Exact match to Figma */}
-            <div className="flex items-center">
-              <span className="font-semibold mr-2">Promotion</span>
-              <div className="relative w-[154px] h-[25px] text-white text-[13px] leading-[25px]">
-                <div className="absolute inset-0 bg-gradient-to-r from-[#FF8810] to-[#DA4A09] pr-[16px] pl-[10px]">
-                  Min. spend ৳550
+            <div className="flex items-center gap-2">
+              <span className="font-medium text-[14px] text-[#475569]">
+                Promotion
+              </span>
+              <div className="relative w-[154px] h-[25px] text-white text-[14px] font-bold leading-[24px]">
+                <div className="absolute inset-0 bg-gradient-to-r from-[#FF8810] to-[#D23707] pr-[16px] pl-[10px] flex items-center text-white font-medium">
+                  <span>Min. spend ৳550</span>
+                  {/* Small downward arrow */}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-[14px] h-[14px] ml-1"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
                 </div>
+
                 <div className="absolute right-[-1px] top-0 h-full w-[12px] bg-white clip-triangle-inset" />
               </div>
             </div>
