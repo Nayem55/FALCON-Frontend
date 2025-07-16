@@ -9,12 +9,18 @@ import {
   ChevronUp,
   CheckCircle,
   XCircle,
+  ArrowDownLeft,
+  ArrowDown,
+  ArrowBigDown,
 } from "lucide-react";
 import { ThemeContext } from "../../Contexts/ThemeContext";
 import { toast } from "react-hot-toast";
 import { addToDb } from "../../utilities/CartDb";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import "./ProductDetails.css";
+import down from "../../Images/down.png";
+import share from "../../Images/Share.png";
+import like from "../../Images/Like.png";
 
 const ProductDetails = () => {
   const { slug } = useParams();
@@ -208,8 +214,8 @@ const ProductDetails = () => {
       </nav>
 
       {/* 3‑column */}
-      <section className="lg:w-[1440px] lg:h-[601px] mx-auto bg-white lg:py-[24px] lg:px-[80px]">
-        <div className="lg:w-[1280px] lg:h-[553px] mx-auto flex flex-col sm:flex-row gap-[32px]">
+      <section className="lg:w-[1440px] mx-auto bg-white lg:py-[24px] lg:px-[80px]">
+        <div className="lg:w-[1280px] mx-auto flex flex-col sm:flex-row gap-[32px]">
           {/* Gallery */}
           <div>
             <div className="border rounded-[5px] flex items-center justify-center lg:w-[380px] lg:h-[380px] overflow-hidden">
@@ -236,28 +242,52 @@ const ProductDetails = () => {
           </div>
 
           {/* Details */}
-          <div className="space-y-4">
-            <h1 className="text-xl font-semibold leading-6">{product.name}</h1>
-            {/* Rating - Updated to match Figma exactly */}
-            <div className="flex items-center space-x-2 text-sm">
-              <span className="text-black">4.7</span>
-              <div className="flex">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    size={16}
-                    className={`${
-                      i < 4 ? "fill-[#FFD700] text-[#FFD700]" : "text-gray-300"
-                    }`}
-                  />
-                ))}
+          <div className="flex flex-col gap-[26px] sm:w-[507px]">
+            <h1 className="font-medium text-[20px] leading-[28px] tracking-normal font-onest text-[#0F172A]">
+              {product.name}
+            </h1>
+
+            <div className="flex justify-between sm:w-[507px]">
+              <div className="flex items-center space-x-2 text-sm gap-[10px]">
+                <span className="text-[#475569] text-[16px] font-normal">
+                  4.7
+                </span>
+                <div className="flex gap-[4px]">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      size={20}
+                      className={`${
+                        i < 4
+                          ? "fill-[#EAB308] text-[#EAB308]"
+                          : "text-gray-300"
+                      }`}
+                    />
+                  ))}
+                </div>
+                <span className="text-[#475569] text-[16px] font-normal">
+                  2,254
+                </span>
+                <span className="text-[#475569] text-[16px]">
+                  <img alt="" src={down} />
+                </span>
               </div>
-              <span className="text-gray-600">2,254</span>
+              <div className="flex items-center gap-[8px]">
+                <span className="text-[#475569] text-[16px]">
+                  <img alt="" src={like} />
+                </span>
+                <span className="text-[#475569] text-[16px]">
+                  <img alt="" src={share} />
+                </span>
+              </div>
             </div>
+
             <div className="flex items-center space-x-4">
-              <div className="text-2xl font-bold text-black">৳{price}</div>
+              <div className="text-[24px] font-semibold text-[#00A788]">
+                ৳{price}
+              </div>
               {parseFloat(price) < parseFloat(regularPrice) && (
-                <div className="text-sm line-through text-gray-400">
+                <div className="text-[16px] line-through text-[#94A3B8] font-normal">
                   ৳{regularPrice}
                 </div>
               )}
