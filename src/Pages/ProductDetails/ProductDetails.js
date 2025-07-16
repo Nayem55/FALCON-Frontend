@@ -302,7 +302,7 @@ const ProductDetails = () => {
             </div>
 
             {/* Promotion - Exact match to Figma */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 w-[227px] h-[25px]">
               <span className="font-medium text-[14px] text-[#475569]">
                 Promotion
               </span>
