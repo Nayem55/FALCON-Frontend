@@ -16,6 +16,34 @@
     cursor: pointer;
   }
 
+.scrollbar-custom {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #00A788 transparent; /* Firefox */
+}
+
+.scrollbar-custom::-webkit-scrollbar {
+  height: 6px; /* horizontal scrollbar height */
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background-color: #00A788; /* teal / aqua */
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background-color: #00A788; /* darker teal on hover */
+}
+.clip-triangle-inset {
+  clip-path: polygon(100% 0%, 0% 50%, 100% 100%);
+}
+
+
   @media only screen and (max-width: 600px) {
     .faq-container {
       padding: 1rem;
