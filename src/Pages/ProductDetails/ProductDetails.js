@@ -21,6 +21,12 @@ import "./ProductDetails.css";
 import down from "../../Images/down.png";
 import share from "../../Images/Share.png";
 import like from "../../Images/Like.png";
+import variation1 from "../../Images/variation-1.png";
+import variation2 from "../../Images/variation-2.png";
+import variation3 from "../../Images/variation-3.png";
+import variation4 from "../../Images/variation-4.png";
+import package1 from "../../Images/package.png";
+import packageMoving from "../../Images/package-moving.png";
 
 const ProductDetails = () => {
   const { slug } = useParams();
@@ -136,28 +142,28 @@ const ProductDetails = () => {
 
   /* -------------------- sub‑components -------------------- */
   const DeliveryCard = () => (
-    <div className="flex flex-col gap-4">
-      <div className="border rounded p-4 text-xs space-y-4 md:col-span-1 h-fit lg:w-[313px]">
+    <div className="flex flex-col gap-[16px]">
+      <div className="border border-[1px] rounded-[12px] p-4 text-xs space-y-4 md:col-span-1 h-fit lg:w-[313px]">
         {/* Delivery */}
         <div className="space-y-2">
-          <h3 className="font-semibold text-sm flex items-center space-x-2">
-            <Truck size={14} /> <span>Delivery Options</span>
+          <h3 className="font-medium text-[18px] text-[#475569] flex items-center space-x-2 mb-[12px]">
+            <span>Delivery Options</span>
           </h3>
           <div className="flex flex-col justify-between text-sm">
-            <div className="flex items-center space-x-1">
-              <CheckCircle size={14} className="text-green-600" />
-              <span>Regular</span>
+            <div className="flex items-center space-x-2">
+              <img alt="" src={package1} />
+              <span className="text-[#334155] text-[16px] font-medium">Regular</span>
             </div>
-            <span className="text-gray-500 ms-4">
-              Delivery within &lt;3 days
+            <span className="text-[#475569] text-[12px] font-normal ms-[28px]">
+              Delivery within 2-3 days
             </span>
           </div>
-          <div className="flex flex-col justify-between text-sm opacity-60">
-            <div className="flex items-center space-x-1">
-              <XCircle size={14} className="text-red-500" />
-              <span>Express</span>
+          <div className="flex flex-col justify-between text-sm">
+            <div className="flex items-center space-x-2">
+              <img alt="" src={packageMoving} />
+              <p className="text-[#CBD5E1] text-[16px] font-medium flex items-center">Express <span className="text-[#F87171] text-[10px] font-semibold ms-[12px]">Not Available</span></p>
             </div>
-            <span className="ms-4">Maximum Delivery within 30 hours</span>
+            <span className="text-[#CBD5E1] text-[12px] font-normal ms-[28px]">Delivery within 24 Hours.</span>
           </div>
         </div>
       </div>
@@ -301,8 +307,7 @@ const ProductDetails = () => {
               )}
             </div>
 
-            {/* Promotion - Exact match to Figma */}
-            <div className="flex items-center gap-2 w-[227px] h-[25px]">
+            <div className="flex items-center gap-2 w-[227px] h-[25px] mt-4">
               <span className="font-medium text-[14px] text-[#475569]">
                 Promotion
               </span>
@@ -332,21 +337,30 @@ const ProductDetails = () => {
 
             {/* Available Color - Updated with color options */}
             <div className="mt-4">
-              <p className="text-sm font-medium mb-2">
-                Available Color: {selectedColor}
+              <p className="text-[16px] ffont-medium mb-2">
+                <span className="text-[#475569]">Available Color:</span>{" "}
+                {selectedColor}
               </p>
-              <div className="flex gap-2">
-                {["Navy Blue", "Black", "White", "Red"].map((color) => (
+              <div className="flex gap-[8px]">
+                {[
+                  { name: "Navy Blue", img: variation1 },
+                  { name: "Black", img: variation2 },
+                  { name: "White", img: variation3 },
+                  { name: "Red", img: variation4 },
+                ].map((color) => (
                   <button
-                    key={color}
-                    onClick={() => setSelectedColor(color)}
-                    className={`px-3 py-1 border rounded text-xs ${
-                      color === selectedColor
-                        ? "border-black bg-gray-100"
-                        : "border-gray-300"
-                    }`}
+                    key={color.name}
+                    onClick={() => setSelectedColor(color.name)}
                   >
-                    {color}
+                    <img
+                      src={color.img}
+                      alt={color.name}
+                      className={`w-[56px] h-[56px] object-cover rounded-[4px] mb-1 border rounded ${
+                        color.name === selectedColor
+                          ? "border-[#00A788] bg-gray-100"
+                          : "border-gray-300"
+                      }`}
+                    />
                   </button>
                 ))}
               </div>
@@ -354,15 +368,18 @@ const ProductDetails = () => {
 
             {/* Select Size */}
             <div className="mt-2">
-              <p className="text-sm font-medium">Select Size: {selectedSize}</p>
-              <div className="flex gap-2 mt-1">
+              <p className="text-[16px] ffont-medium mb-2">
+                <span className="text-[#475569]">Select Size:</span>{" "}
+                {selectedSize}
+              </p>
+              <div className="flex gap-[12px]">
                 {["XS", "S", "M", "L", "XL"].map((size) => (
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
-                    className={`px-3 py-1 border rounded text-xs ${
+                    className={`w-[40px] h-[40px] border rounded-[4px] text-xs ${
                       size === selectedSize
-                        ? "border-black bg-gray-100"
+                        ? "border-[#00A788] bg-gray-100"
                         : "border-gray-300"
                     }`}
                   >
@@ -374,22 +391,23 @@ const ProductDetails = () => {
 
             {/* Quantity */}
             <div className="mt-4 lg:w-[195px] h-[72px]">
-              <p className="text-sm font-medium">Quantity</p>
-              <div className="flex items-center border rounded w-24 mt-1">
+              <p className="text-[16px] font-medium">Quantity</p>
+              <div className="flex items-center justify-between border rounded-full p-1 w-24 mt-[8px] w-full">
                 <button
                   onClick={() => toggleQty(-1)}
-                  className="px-3 py-1 hover:bg-gray-100"
+                  className="w-[33px] h-[33px] border-x rounded-full text-[#64748B] bg-[#F1F5F9] text-[24px] font-medium hover:bg-gray-100"
                 >
                   -
                 </button>
                 <input
-                  value={qty}
+                  value={String(qty).padStart(2, "0")}
                   readOnly
-                  className="w-10 text-center text-sm py-1 border-x"
+                  className="w-10 text-center text-[16px] font-medium py-1"
                 />
+
                 <button
                   onClick={() => toggleQty(1)}
-                  className="px-3 py-1 hover:bg-gray-100"
+                  className="w-[33px] h-[33px] border-x rounded-full text-[#64748B] bg-[#F1F5F9] text-[24px] font-medium hover:bg-gray-100"
                 >
                   +
                 </button>
