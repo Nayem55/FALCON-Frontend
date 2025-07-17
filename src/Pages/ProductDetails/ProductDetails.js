@@ -154,7 +154,7 @@ const ProductDetails = () => {
               <img alt="" src={package1} />
               <span className="text-[#334155] text-[16px] font-medium">Regular</span>
             </div>
-            <span className="text-[#475569] text-[12px] font-normal ms-[28px]">
+            <span className="text-[#475569] text-[12px] font-normal ms-[32px]">
               Delivery within 2-3 days
             </span>
           </div>
@@ -163,7 +163,7 @@ const ProductDetails = () => {
               <img alt="" src={packageMoving} />
               <p className="text-[#CBD5E1] text-[16px] font-medium flex items-center">Express <span className="text-[#F87171] text-[10px] font-semibold ms-[12px]">Not Available</span></p>
             </div>
-            <span className="text-[#CBD5E1] text-[12px] font-normal ms-[28px]">Delivery within 24 Hours.</span>
+            <span className="text-[#CBD5E1] text-[12px] font-normal ms-[32px]">Delivery within 24 Hours.</span>
           </div>
         </div>
       </div>
