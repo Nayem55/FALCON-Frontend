@@ -154,7 +154,9 @@ const ProductDetails = () => {
           <div className="flex flex-col justify-between text-sm">
             <div className="flex items-center space-x-2">
               <img alt="" src={package1} />
-              <span className="text-[#334155] text-[16px] font-medium">Regular</span>
+              <span className="text-[#334155] text-[16px] font-medium">
+                Regular
+              </span>
             </div>
             <span className="text-[#475569] text-[12px] font-normal ms-[32px]">
               Delivery within 2-3 days
@@ -163,9 +165,16 @@ const ProductDetails = () => {
           <div className="flex flex-col justify-between text-sm">
             <div className="flex items-center space-x-2">
               <img alt="" src={packageMoving} />
-              <p className="text-[#CBD5E1] text-[16px] font-medium flex items-center">Express <span className="text-[#F87171] text-[10px] font-semibold ms-[12px]">Not Available</span></p>
+              <p className="text-[#CBD5E1] text-[16px] font-medium flex items-center">
+                Express{" "}
+                <span className="text-[#F87171] text-[10px] font-semibold ms-[12px]">
+                  Not Available
+                </span>
+              </p>
             </div>
-            <span className="text-[#CBD5E1] text-[12px] font-normal ms-[32px]">Delivery within 24 Hours.</span>
+            <span className="text-[#CBD5E1] text-[12px] font-normal ms-[32px]">
+              Delivery within 24 Hours.
+            </span>
           </div>
         </div>
       </div>
@@ -174,16 +183,12 @@ const ProductDetails = () => {
         <p className="text-[#475569] text-[12px font-regular]">Sold by</p>
         <div className="space-y-2">
           <div className="w-[211px]">
-            <img
-              src={seller}
-              alt="brand"
-              className="object-contain"
-            />
+            <img src={seller} alt="brand" className="object-contain" />
             {/* <span>{product.merchant.shop_name}</span> */}
           </div>
           <div className="flex text-xs mt-4 gap-[12px] border-b-[1px] pb-[12px] w-[282px] mx-auto">
             <button className="bg-[#E6F8F4] text-[#00A788] font-medium text-[14px] rounded-[4px] w-[135px] h-[28px] flex items-center justify-center gap-[8px]">
-              <img alt="" src={chat}/> <span>Chat Now</span>
+              <img alt="" src={chat} /> <span>Chat Now</span>
             </button>
             <button className="bg-[#F1F5F9] text-[#475569] font-medium text-[14px] rounded-[4px] w-[135px] h-[28px]">
               View Shop
@@ -191,15 +196,21 @@ const ProductDetails = () => {
           </div>
           <div className="grid grid-cols-3 gap-2 mt-4 w-[282px]">
             <div className="mt-2 flex flex-col gap-[12px]">
-              <p className="text-[12px] text-[#475569] font-medium">Ship on time</p>
+              <p className="text-[12px] text-[#475569] font-medium">
+                Ship on time
+              </p>
               <p className="font-normal text-[28px] text-[#64748B]">100%</p>
             </div>
             <div className="mt-2 flex flex-col gap-[12px]">
-              <p className="text-[12px] text-[#475569] font-medium">Chat Response</p>
+              <p className="text-[12px] text-[#475569] font-medium">
+                Chat Response
+              </p>
               <p className="font-normal text-[28px] text-[#64748B]">90%</p>
             </div>
             <div className="mt-2 flex flex-col gap-[12px]">
-              <p className="text-[12px] text-[#475569] font-medium">Shop Rating</p>
+              <p className="text-[12px] text-[#475569] font-medium">
+                Shop Rating
+              </p>
               <p className="font-normal text-[28px] text-[#64748B]">99.8%</p>
             </div>
           </div>
@@ -212,7 +223,7 @@ const ProductDetails = () => {
   return (
     <main className="p-4 lg:p-0 lg:bg-[#F1F5F9]">
       {/* breadcrumb */}
-      <nav className="text-xs text-gray-500 mb-4 space-x-1 bg-[#F1F5F9] p-4 lg:w-[1280px] mx-auto">
+      <nav className="text-[14px] font-normal text-[#475569] px-4 lg:px-0 py-4 mb-4 lg:mb-0 space-x-1 bg-[#F1F5F9] lg:w-[1280px] mx-auto">
         <Link to="/" className="hover:underline">
           Home
         </Link>
@@ -282,10 +293,10 @@ const ProductDetails = () => {
                 </span>
               </div>
               <div className="flex items-center gap-[8px]">
-                <span className="text-[#475569] text-[16px]">
+                <span className="text-[#475569] text-[16px] cursor-pointer">
                   <img alt="" src={like} />
                 </span>
-                <span className="text-[#475569] text-[16px]">
+                <span className="text-[#475569] text-[16px] cursor-pointer">
                   <img alt="" src={share} />
                 </span>
               </div>
@@ -433,8 +444,8 @@ const ProductDetails = () => {
       {/* desc & spec*/}
       <section className="flex flex-col gap-8 py-10 lg:w-[1280px] mx-auto">
         {/* description */}
-        <div className="bg-white border rounded overflow-hidden relative h-[230px] lg:h-[339px] lg:w-[955px]">
-          <header className="bg-[#E6F8F4] px-4 py-2 font-semibold text-sm">
+        <div className="bg-white rounded-[4px] sm:py-4 sm:px-2 overflow-hidden relative min-h-[230px] lg:min-h-[339px] lg:w-[955px]">
+          <header className="px-4 py-2 font-medium text-[24px]">
             Description
           </header>
           <div className="p-4 text-sm relative">
@@ -445,7 +456,11 @@ const ProductDetails = () => {
                   : "max-h-[120px] min-h-[60px] overflow-hidden"
               }`}
             >
-              <p className="whitespace-pre-line">{product.description}</p>
+              <div
+                className="whitespace-pre-line text-[16px] text-[#475569] font-normal"
+                dangerouslySetInnerHTML={{ __html: product.description }}
+              />
+
               {!expandedDesc && (
                 <div className="absolute bottom-4 left-0 w-full h-16 bg-gradient-to-t from-white to-transparent pointer-events-none" />
               )}
@@ -455,17 +470,17 @@ const ProductDetails = () => {
             onClick={() => setExpandedDesc(!expandedDesc)}
             className="text-black absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center space-x-1 text-xs"
           >
-            {expandedDesc ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-            <span>{expandedDesc ? "See Less" : "See More"}</span>
+            <span className="text-[#0F172A] text-[16px] font-medium">{expandedDesc ? "See Less" : "See More"}</span>
+            {expandedDesc ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
           </button>
         </div>
 
         {/* specification */}
-        <div className="bg-white border rounded overflow-hidden relative h-[230px] lg:h-[339px] lg:w-[955px]">
-          <header className="bg-[#E6F8F4] px-4 py-2 font-semibold text-sm">
+        <div className="bg-white rounded-[4px] sm:py-4 sm:px-2 overflow-hidden relative min-h-[230px] lg:min-h-[339px] lg:w-[955px]">
+          <header className="px-4 py-2 font-medium text-[24px]">
             Specification
           </header>
-          <div className="p-4 text-sm relative">
+          <div className="p-4 relative text-[16px] text-[#475569] font-normal">
             <ul
               className={`${
                 expandedSpec ? "max-h-full" : "h-16 overflow-hidden"
@@ -484,8 +499,8 @@ const ProductDetails = () => {
             onClick={() => setExpandedSpec(!expandedSpec)}
             className="text-black absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center space-x-1 text-xs"
           >
-            {expandedSpec ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-            <span>{expandedSpec ? "See Less" : "See More"}</span>
+            <span className="text-[#0F172A] text-[16px] font-medium">{expandedSpec ? "See Less" : "See More"}</span>
+            {expandedSpec ? <ChevronUp size={24} /> : <ChevronDown size={24} />}
           </button>
         </div>
       </section>

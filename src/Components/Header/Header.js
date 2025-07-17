@@ -42,9 +42,9 @@ const Header = ({ popCart, handlePopCart }) => {
   return (
     <header className="bg-[#0c1c2c] text-white w-full shadow-sm">
       {/* ================= TOP BAR ================= */}
-      <div className="flex items-center justify-between px-4 md:px-16 py-3 space-x-4">
+      <div className="flex items-center justify-between px-4 lg:px-0 lg:w-[1280px] mx-auto py-3 space-x-4">
         {/* Left: Burger (mobile) + Logo */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center">
           {/* Mobile burger */}
           <button
             className="md:hidden focus:outline-none"
@@ -55,11 +55,11 @@ const Header = ({ popCart, handlePopCart }) => {
 
           {/* Logo */}
           <div
-            className="flex items-center cursor-pointer"
+            className="flex gap-[4px] items-center cursor-pointer"
             onClick={() => navigate("/")}
           >
-            <img src={logo} alt="FALCON" className="h-6 mr-2" />
-            <span className="text-lg font-bold tracking-wide">FALCON</span>
+            <img src={logo} alt="FALCON" className="h-[24px] w-[24px]" />
+            <span className="text-[24px] font-bold tracking-wide">FALCON</span>
           </div>
         </div>
 
@@ -131,34 +131,36 @@ const Header = ({ popCart, handlePopCart }) => {
       )}
 
       {/* ================= SECOND ROW (Desktop only) ================= */}
-      <nav className="hidden md:flex items-center justify-between bg-white text-black border-t border-b px-10 py-4">
-        {/* Categories */}
-        <div className="flex items-center space-x-6 overflow-x-auto hide-scrollbar">
-          <button
-            className="flex items-center space-x-1 text-sm font-medium min-w-max"
-            onClick={() => setMenuOpen(true)}
-          >
-            <FontAwesomeIcon className="mt-[-5px]" icon={faBars} />
-            <span>Categories</span>
-          </button>
-          {categories.slice(0, 5).map((cat) => (
-            <Link
-              key={cat.id}
-              to={`/${cat.slug}`}
-              className="text-sm font-medium hover:text-teal-500 min-w-max"
+      <div className="bg-white">
+        <nav className="hidden md:flex items-center justify-between bg-white text-black lg:w-[1280px] mx-auto border-t border-b py-4">
+          {/* Categories */}
+          <div className="flex items-center space-x-6 overflow-x-auto hide-scrollbar">
+            <button
+              className="flex items-center space-x-1 text-sm font-medium min-w-max"
+              onClick={() => setMenuOpen(true)}
             >
-              {cat.name}
-            </Link>
-          ))}
-        </div>
+              <FontAwesomeIcon className="mt-[-5px]" icon={faBars} />
+              <span>Categories</span>
+            </button>
+            {categories.slice(0, 5).map((cat) => (
+              <Link
+                key={cat.id}
+                to={`/${cat.slug}`}
+                className="text-sm font-medium hover:text-teal-500 min-w-max"
+              >
+                {cat.name}
+              </Link>
+            ))}
+          </div>
 
-        {/* Utilities */}
-        <div className="flex items-center space-x-6 text-sm font-medium">
-          <Link to="/track-order">TRACK ORDER</Link>
-          <Link to="/help-center">HELP CENTER</Link>
-          <Link to="/sell-with-us">SELL WITH US</Link>
-        </div>
-      </nav>
+          {/* Utilities */}
+          <div className="flex items-center space-x-6 text-sm font-medium">
+            <Link to="/track-order">TRACK ORDER</Link>
+            <Link to="/help-center">HELP CENTER</Link>
+            <Link to="/sell-with-us">SELL WITH US</Link>
+          </div>
+        </nav>
+      </div>
 
       {/* ================= SHARED DRAWER (Mobile + Desktop) ================= */}
       <div
