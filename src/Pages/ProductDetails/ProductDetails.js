@@ -27,6 +27,8 @@ import variation3 from "../../Images/variation-3.png";
 import variation4 from "../../Images/variation-4.png";
 import package1 from "../../Images/package.png";
 import packageMoving from "../../Images/package-moving.png";
+import seller from "../../Images/Seller.png";
+import chat from "../../Images/chat.png";
 
 const ProductDetails = () => {
   const { slug } = useParams();
@@ -167,37 +169,38 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
-      <div className="border rounded p-4 text-xs space-y-4 md:col-span-1 h-fit lg:w-[313px]">
+      <div className="border rounded-[12px] p-4 text-xs md:col-span-1 h-fit lg:w-[313px] flex flex-col gap-[16px]">
         {/* Seller */}
+        <p className="text-[#475569] text-[12px font-regular]">Sold by</p>
         <div className="space-y-2">
-          <div className="flex items-center space-x-2 text-sm font-medium">
+          <div className="w-[211px]">
             <img
-              src={product.brand?.media?.[0]?.full_url || product.brand?.image}
+              src={seller}
               alt="brand"
-              className="w-6 h-6 rounded-full object-contain"
+              className="object-contain"
             />
-            <span>{product.merchant.shop_name}</span>
+            {/* <span>{product.merchant.shop_name}</span> */}
           </div>
-          <div className="flex justify-between space-x-2 text-xs">
-            <button className="bg-[#E6F8F4] text-[#00A788] px-3 py-2 rounded w-[135px] h-[28px]">
-              Chat Now
+          <div className="flex text-xs mt-4 gap-[12px] border-b-[1px] pb-[12px] w-[282px] mx-auto">
+            <button className="bg-[#E6F8F4] text-[#00A788] font-medium text-[14px] rounded-[4px] w-[135px] h-[28px] flex items-center justify-center gap-[8px]">
+              <img alt="" src={chat}/> <span>Chat Now</span>
             </button>
-            <button className="border px-3 py-2 rounded w-[135px] h-[28px]">
+            <button className="bg-[#F1F5F9] text-[#475569] font-medium text-[14px] rounded-[4px] w-[135px] h-[28px]">
               View Shop
             </button>
           </div>
-          <div className="grid grid-cols-3 gap-2 mt-4">
-            <div className="text-center mt-2">
-              <p>Ship on time</p>
-              <p className="font-semibold text-xl">100%</p>
+          <div className="grid grid-cols-3 gap-2 mt-4 w-[282px]">
+            <div className="mt-2 flex flex-col gap-[12px]">
+              <p className="text-[12px] text-[#475569] font-medium">Ship on time</p>
+              <p className="font-normal text-[28px] text-[#64748B]">100%</p>
             </div>
-            <div className="text-center mt-2">
-              <p>Chat Response</p>
-              <p className="font-semibold text-xl">90%</p>
+            <div className="mt-2 flex flex-col gap-[12px]">
+              <p className="text-[12px] text-[#475569] font-medium">Chat Response</p>
+              <p className="font-normal text-[28px] text-[#64748B]">90%</p>
             </div>
-            <div className="text-center mt-2">
-              <p>Shop Rating</p>
-              <p className="font-semibold text-xl">99.8%</p>
+            <div className="mt-2 flex flex-col gap-[12px]">
+              <p className="text-[12px] text-[#475569] font-medium">Shop Rating</p>
+              <p className="font-normal text-[28px] text-[#64748B]">99.8%</p>
             </div>
           </div>
         </div>
@@ -373,7 +376,7 @@ const ProductDetails = () => {
                 {selectedSize}
               </p>
               <div className="flex gap-[12px]">
-                {["XS", "S", "M", "L", "XL"].map((size) => (
+                {["XL", "XS", "S", "M", "L"].map((size) => (
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
