@@ -152,13 +152,12 @@ const Header = ({ popCart, handlePopCart }) => {
                 Categories
               </span>
             </button>
-            {categories.slice(0, 5).map((cat) => (
+            {["Electronics","Home Appliances","Mother & Baby","Automotive","Sports Gear"].map((cat) => (
               <Link
-                key={cat.id}
-                to={`/${cat.slug}`}
+                key={cat}
                 className="text-[14px] text-[#0F172A] font-normal hover:text-[#00A788] min-w-max"
               >
-                {cat.name}
+                {cat}
               </Link>
             ))}
           </div>
