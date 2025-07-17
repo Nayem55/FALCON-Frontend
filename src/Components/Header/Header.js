@@ -13,6 +13,9 @@ import { Search, Menu, X } from "lucide-react";
 import cart from "../../Images/shopping-cart-01.png";
 import user from "../../Images/User.png";
 import menu from "../../Images/menu-01.png";
+import track from "../../Images/track.png";
+import help from "../../Images/helpline.png";
+import sell from "../../Images/Sell-with-us (1).gif";
 /**
  * Header – fully responsive header (mobile ⇄ desktop)
  */
@@ -145,13 +148,15 @@ const Header = ({ popCart, handlePopCart }) => {
               onClick={() => setMenuOpen(true)}
             >
               <img alt="" src={menu} />
-              <span>Categories</span>
+              <span className="text-[#0F172A] text-[16px] font-medium">
+                Categories
+              </span>
             </button>
             {categories.slice(0, 5).map((cat) => (
               <Link
                 key={cat.id}
                 to={`/${cat.slug}`}
-                className="text-sm font-medium hover:text-teal-500 min-w-max"
+                className="text-[14px] text-[#0F172A] font-normal hover:text-[#00A788] min-w-max"
               >
                 {cat.name}
               </Link>
@@ -159,10 +164,16 @@ const Header = ({ popCart, handlePopCart }) => {
           </div>
 
           {/* Utilities */}
-          <div className="flex items-center space-x-6 text-sm font-medium">
-            <Link to="/track-order">TRACK ORDER</Link>
-            <Link to="/help-center">HELP CENTER</Link>
-            <Link to="/sell-with-us">SELL WITH US</Link>
+          <div className="flex items-center gap-[24px] text-sm font-medium">
+            <Link className="flex gap-[8px]" to="/track-order">
+              <img className="w-[16px] h-[16px]" alt="" src={track} /> <span className="text-[12px] text-[#475569] font-medium">TRACK ORDER</span>{" "}
+            </Link>
+            <Link className="flex gap-[8px]" to="/help-center">
+              <img className="w-[16px] h-[16px]" alt="" src={help} /> <span className="text-[12px] text-[#475569] font-medium">HELP CENTER</span>{" "}
+            </Link>
+            <Link className="flex gap-[8px]" to="/sell-with-us">
+              <img className="w-[16px] h-[16px]" alt="" src={sell} /> <span className="text-[12px] text-[#475569] font-medium">SELL WITH US</span>{" "}
+            </Link>
           </div>
         </nav>
       </div>
