@@ -152,26 +152,43 @@ const Header = ({ popCart, handlePopCart }) => {
                 Categories
               </span>
             </button>
-            {["Electronics","Home Appliances","Mother & Baby","Automotive","Sports Gear"].map((cat) => (
-              <Link
-                key={cat}
-                className="text-[14px] text-[#0F172A] font-normal hover:text-[#00A788] min-w-max"
-              >
-                {cat}
-              </Link>
-            ))}
+            <div className="flex gap-[32px]">
+              {[
+                "Electronics",
+                "Home Appliances",
+                "Mother & Baby",
+                "Automotive",
+                "Sports Gear",
+              ].map((cat) => (
+                <Link
+                  key={cat}
+                  className="text-[14px] text-[#0F172A] font-normal hover:text-[#00A788] min-w-max"
+                >
+                  {cat}
+                </Link>
+              ))}
+            </div>
           </div>
 
           {/* Utilities */}
           <div className="flex items-center gap-[24px] text-sm font-medium">
             <Link className="flex gap-[8px]" to="/track-order">
-              <img className="w-[16px] h-[16px]" alt="" src={track} /> <span className="text-[12px] text-[#475569] font-medium">TRACK ORDER</span>{" "}
+              <img className="w-[16px] h-[16px]" alt="" src={track} />{" "}
+              <span className="text-[12px] text-[#475569] font-medium">
+                TRACK ORDER
+              </span>{" "}
             </Link>
             <Link className="flex gap-[8px]" to="/help-center">
-              <img className="w-[16px] h-[16px]" alt="" src={help} /> <span className="text-[12px] text-[#475569] font-medium">HELP CENTER</span>{" "}
+              <img className="w-[16px] h-[16px]" alt="" src={help} />{" "}
+              <span className="text-[12px] text-[#475569] font-medium">
+                HELP CENTER
+              </span>{" "}
             </Link>
             <Link className="flex gap-[8px]" to="/sell-with-us">
-              <img className="w-[16px] h-[16px]" alt="" src={sell} /> <span className="text-[12px] text-[#475569] font-medium">SELL WITH US</span>{" "}
+              <img className="w-[16px] h-[16px]" alt="" src={sell} />{" "}
+              <span className="text-[12px] text-[#475569] font-medium">
+                SELL WITH US
+              </span>{" "}
             </Link>
           </div>
         </nav>
