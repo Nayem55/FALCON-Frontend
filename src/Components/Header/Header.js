@@ -10,7 +10,9 @@ import logo from "../../Images/Logo.png";
 import { ThemeContext } from "../../Contexts/ThemeContext";
 import Cart from "../Cart/Cart";
 import { Search, Menu, X } from "lucide-react";
-
+import cart from "../../Images/shopping-cart-01.png";
+import user from "../../Images/User.png";
+import menu from "../../Images/menu-01.png";
 /**
  * Header – fully responsive header (mobile ⇄ desktop)
  */
@@ -64,19 +66,22 @@ const Header = ({ popCart, handlePopCart }) => {
         </div>
 
         {/* Center: Search (desktop) */}
-        <form onSubmit={handleSearch} className="hidden md:flex w-1/2">
+        <form
+          onSubmit={handleSearch}
+          className="hidden lg:flex w-[763px] h-[48px]"
+        >
           <input
             type="text"
-            placeholder="Search for products…"
+            placeholder="Search for anything...."
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
             onFocus={() => setFocus(true)}
             onBlur={() => setTimeout(() => setFocus(false), 150)}
-            className="w-full px-4 py-2 text-black rounded-l-md"
+            className="w-full px-4 py-2 text-black rounded-l"
           />
           <button
             type="submit"
-            className="bg-[#00B795] px-4 rounded-r-md flex items-center justify-center"
+            className="bg-[#00B795] rounded-r flex items-center justify-center w-[48px] h-[48px]"
           >
             <Search size={20} className="stroke-2" />
           </button>
@@ -99,12 +104,12 @@ const Header = ({ popCart, handlePopCart }) => {
 
           {/* Mobile cart icon (simplified) */}
           <Link to="/cart" className="md:hidden relative">
-            <FontAwesomeIcon icon={faShoppingCart} />
+            <img alt="" src={cart} />
           </Link>
 
           {/* User */}
           <Link to="/">
-            <FontAwesomeIcon icon={faUser} className="text-[22px]" />
+            <img alt="" src={user} />
           </Link>
         </div>
       </div>
@@ -139,7 +144,7 @@ const Header = ({ popCart, handlePopCart }) => {
               className="flex items-center space-x-1 text-sm font-medium min-w-max"
               onClick={() => setMenuOpen(true)}
             >
-              <FontAwesomeIcon className="mt-[-5px]" icon={faBars} />
+              <img alt="" src={menu} />
               <span>Categories</span>
             </button>
             {categories.slice(0, 5).map((cat) => (
