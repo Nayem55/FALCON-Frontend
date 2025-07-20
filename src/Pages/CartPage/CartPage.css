@@ -1,0 +1,25 @@
+.custom-checkbox {
+  accent-color: #00B795; /* background color */
+}
+
+/* WebKit-based browsers */
+.custom-checkbox:checked {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #00B795;
+  border: 2px solid #00B795;
+  border-radius: 3px;
+  position: relative;
+}
+
+.custom-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 0px;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}

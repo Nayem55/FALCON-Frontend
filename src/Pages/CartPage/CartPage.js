@@ -11,6 +11,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import rightArrow from "../../Images/arrow-right-01-sharp.png";
 import shop from "../../Images/shop.png";
+import "./CartPage.css";
 
 const CartPage = () => {
   const { cart, setCart } = useContext(ThemeContext);
@@ -108,11 +109,13 @@ const CartPage = () => {
               <label className="flex items-center space-x-1 cursor-pointer">
                 <input
                   type="checkbox"
-                  className="accent-[#00B795] lg:w-[20px] lg:h-[20px]"
+                  className="custom-checkbox accent-[#00B795] lg:w-[20px] lg:h-[20px]"
                   checked={cart.every((r) => r.selected)}
                   onChange={(e) => toggleAll(e.target.checked)}
                 />
-                <span className="text-[#475569]  text-sm lg:text-[16px]">Select All</span>
+                <span className="text-[#475569]  text-sm lg:text-[16px]">
+                  Select All
+                </span>
               </label>
               <button
                 className="text-[#475569]  text-sm lg:text-[16px] disabled:opacity-40 mt-1"
@@ -133,7 +136,7 @@ const CartPage = () => {
               <div className="bg-[#F1F5F9] flex items-center px-4 py-2 text-sm font-medium flex gap-4">
                 <input
                   type="checkbox"
-                  className="accent-[#00B795] mr-2 lg:w-[20px] lg:h-[20px]"
+                  className="custom-checkbox accent-[#00B795] mr-2 lg:w-[20px] lg:h-[20px]"
                   checked={rows.every((r) => r.selected)}
                   onChange={(e) => toggleMerchant(merchant, e.target.checked)}
                 />
@@ -153,7 +156,7 @@ const CartPage = () => {
                   {/* row-checkbox */}
                   <input
                     type="checkbox"
-                    className="accent-[#00B795] mt-2 sm:mt-0 mr-3 lg:w-[20px] lg:h-[20px]"
+                    className="custom-checkbox accent-[#00B795] text-white mt-2 sm:mt-0 mr-3 lg:w-[20px] lg:h-[20px]"
                     checked={!!it.selected}
                     onChange={(e) => toggleRow(it.key, e.target.checked)}
                   />
@@ -165,8 +168,10 @@ const CartPage = () => {
                     className="w-[60px] h-[60px] lg:w-[100px] lg:h-[100px] object-cover rounded mr-3 shrink-0"
                   />
                   <div className="flex-1">
-                    <p className="font-medium  text-sm lg:text-[16px] text-[#0F172A]">{it.product.name}</p>
-                    <p className= "text-sm lg:text-[16px] text-[#475569] font-normal flex flex-col lg:flex-row">
+                    <p className="font-medium  text-sm lg:text-[16px] text-[#0F172A]">
+                      {it.product.name}
+                    </p>
+                    <p className="text-sm lg:text-[16px] text-[#475569] font-normal flex flex-col lg:flex-row">
                       <span>Color : {it.color};</span>
                       <span>Size : {it.size}</span>
                     </p>
@@ -265,14 +270,15 @@ const CartPage = () => {
             Proceed to Checkout
           </button>
 
-          <label className="flex items-start space-x-2 text-xs">
+          <label className="flex items-start space-x-2 ">
             <input
               type="checkbox"
-              className="accent-[#00B795] mt-[2px]"
+              className="custom-checkbox accent-[#00B795] p-2 lg:w-[20px] lg:h-[20px] "
               checked={agree}
               onChange={(e) => setAgree(e.target.checked)}
             />
-            <span className="text-[#475569]  text-sm lg:text-[16px] font-normal">
+
+            <span className="text-[#475569] text-sm lg:text-[16px] font-normal">
               I have read and agree to the Terms and Conditions, Privacy Policy
               and Refund and Return Policy
             </span>
