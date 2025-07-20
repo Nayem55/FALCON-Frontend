@@ -140,7 +140,7 @@ const Header = ({ popCart, handlePopCart }) => {
 
       {/* ================= SECOND ROW (Desktop only) ================= */}
       <div className="bg-white">
-        <nav className="hidden md:flex items-center justify-between bg-white text-black lg:w-[1280px] mx-auto border-t border-b py-4">
+        <nav className="hidden md:flex items-center justify-between bg-white text-black lg:w-[1280px] mx-auto py-4">
           {/* Categories */}
           <div className="flex items-center space-x-6 overflow-x-auto hide-scrollbar">
             <button
