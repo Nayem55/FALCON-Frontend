@@ -27,8 +27,8 @@ const Footer = () => {
         {/* Brand & Contact */}
         <div className="space-y-4 col-span-2 w-[272px]">
           <h2 className="text-xl font-bold flex items-center gap-2">
-            <img src={logo} alt="Falcon logo" className="h-[48px] w-[48px]" />
-            <span className="text-[48px] font-bold">FALCON</span>
+            <img src={logo} alt="Falcon logo" className="h-[32px] lg:h-[48px] w-[32px] lg:w-[48px]" />
+            <span className="text-[32px] lg:text-[48px] font-bold">FALCON</span>
           </h2>
 
           <p className="text-[#F1F5F9] text-[14px] font-normal">

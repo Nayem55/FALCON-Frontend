@@ -407,10 +407,10 @@ const ProductDetails = () => {
             {/* Quantity */}
             <div className="mt-4 lg:w-[195px] h-[72px]">
               <p className="text-[16px] font-medium">Quantity</p>
-              <div className="flex items-center justify-between border rounded-full p-1 w-24 mt-[8px] w-full">
+              <div className="flex items-center justify-between border rounded-full p-1 w-24 mt-[8px] w-[195px] h-[40px]">
                 <button
                   onClick={() => toggleQty(-1)}
-                  className="w-[33px] h-[33px] border-x rounded-full text-[#64748B] bg-[#F1F5F9] text-[24px] font-medium hover:bg-gray-100"
+                  className="w-[33px] h-[33px] flex items-center justify-center border-x rounded-full text-[#64748B] bg-[#F1F5F9] text-[24px] font-medium hover:bg-gray-100"
                 >
                   -
                 </button>
@@ -422,7 +422,7 @@ const ProductDetails = () => {
 
                 <button
                   onClick={() => toggleQty(1)}
-                  className="w-[33px] h-[33px] border-x rounded-full text-[#64748B] bg-[#F1F5F9] text-[24px] font-medium hover:bg-gray-100"
+                  className="w-[33px] h-[33px] flex items-center justify-center border-x rounded-full text-[#64748B] bg-[#F1F5F9] text-[24px] font-medium hover:bg-gray-100"
                 >
                   +
                 </button>
