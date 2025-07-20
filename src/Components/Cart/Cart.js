@@ -4,6 +4,7 @@ import { ThemeContext } from "../../Contexts/ThemeContext";
 import "./Cart.css";
 import cartImage from "../../Images/shopping-cart-01.png"
 
+
 const Cart = () => {
   const location = useLocation();
   const navigate = useNavigate();

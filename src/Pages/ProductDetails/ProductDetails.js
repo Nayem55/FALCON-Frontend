@@ -29,6 +29,7 @@ import package1 from "../../Images/package.png";
 import packageMoving from "../../Images/package-moving.png";
 import seller from "../../Images/Seller.png";
 import chat from "../../Images/chat.png";
+import rightArrow from "../../Images/arrow-right-01-sharp.png";
 
 const ProductDetails = () => {
   const { slug } = useParams();
@@ -223,12 +224,12 @@ const ProductDetails = () => {
   return (
     <main className="p-4 lg:p-0 lg:bg-[#F1F5F9]">
       {/* breadcrumb */}
-      <nav className="text-[14px] font-normal text-[#475569] px-4 lg:px-0 py-4 mb-4 lg:mb-0 space-x-1 bg-[#F1F5F9] lg:w-[1280px] mx-auto">
-        <Link to="/" className="hover:underline">
+      <nav className="text-[14px] font-normal  px-4 lg:px-0 py-4 mb-4 lg:mb-0 flex gap-[4px] bg-[#F1F5F9] lg:w-[1280px] mx-auto">
+        <Link to="/" className="text-[#0F172A] text-[14px] font-normal">
           Home
         </Link>
-        <span>/</span>
-        <Link to={`/${product.slug}`} className="hover:underline">
+        <img alt="" src={rightArrow}/>
+        <Link to={`/${product.slug}`} className="text-[#475569] text-[14px] font-normal">
           {catName}
         </Link>
       </nav>
