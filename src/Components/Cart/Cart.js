@@ -23,7 +23,6 @@ const Cart = () => {
         <div className="indicator">
           {/*-------------- cart icon -------------*/}
 
-          {location.pathname.includes("/cart") || (
             <div onClick={() => navigate("/cart")}>
               <img className="w-[28px] h-[28px]" alt="" src={cartImage} />
               <span
@@ -32,7 +31,6 @@ const Cart = () => {
                 {qty}
               </span>
             </div>
-          )}
         </div>
       </div>
     </div>
